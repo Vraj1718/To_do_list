@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Task Manager</title>
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animations.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endcomment %}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            <h2>✨ Modern Task Manager</h2>
+            {% if user.is_authenticated %}
+                <div class="nav-links">
+                    <a href="{% url 'home' %}">🏠 Home</a>
+                    <a href="{% url 'add' %}">➕ Add Task</a>
+                    <a href="{% url 'logout' %}">🚪 Logout</a>
+                </div>
+            {% else %}
+                <div class="nav-links">
+                    <a href="{% url 'login' %}">🔐 Login</a>
+                    <a href="{% url 'register' %}">📝 Register</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Floating Action Button for Add Task -->
+    {% if user.is_authenticated and request.resolver_match.url_name == 'index' %}
+        <a href="{% url 'add' %}" class="fab" title="Add New Task">
+            ➕
+        </a>
+    {% endif %}
+
+    <script src="{% static '/js/script.js' %}"></script>
+</body>
+</html>
+
+

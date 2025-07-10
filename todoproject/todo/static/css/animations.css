@@ -1,0 +1,427 @@
+/* Animations CSS - Advanced Animations & Effects */
+
+/* Global Animation Variables */
+:root {
+  --animation-duration-fast: 0.15s;
+  --animation-duration-normal: 0.3s;
+  --animation-duration-slow: 0.5s;
+  --animation-duration-slower: 0.8s;
+  --animation-easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --animation-easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-easing-sharp: cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+/* Page Load Animations */
+.page-enter {
+  animation: pageEnter var(--animation-duration-slower) var(--animation-easing-smooth) both;
+}
+
+@keyframes pageEnter {
+  from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+  }
+}
+
+/* Stagger Animations */
+.stagger-item {
+  animation: staggerFadeIn var(--animation-duration-normal) var(--animation-easing-smooth) both;
+}
+
+.stagger-item:nth-child(1) { animation-delay: 0.1s; }
+.stagger-item:nth-child(2) { animation-delay: 0.2s; }
+.stagger-item:nth-child(3) { animation-delay: 0.3s; }
+.stagger-item:nth-child(4) { animation-delay: 0.4s; }
+.stagger-item:nth-child(5) { animation-delay: 0.5s; }
+.stagger-item:nth-child(6) { animation-delay: 0.6s; }
+.stagger-item:nth-child(7) { animation-delay: 0.7s; }
+.stagger-item:nth-child(8) { animation-delay: 0.8s; }
+.stagger-item:nth-child(9) { animation-delay: 0.9s; }
+.stagger-item:nth-child(10) { animation-delay: 1.0s; }
+
+@keyframes staggerFadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Hover Effects */
+.hover-lift {
+  transition: all var(--animation-duration-normal) var(--animation-easing-smooth);
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+}
+
+.hover-scale {
+  transition: all var(--animation-duration-normal) var(--animation-easing-bounce);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-glow {
+  transition: all var(--animation-duration-normal) var(--animation-easing-smooth);
+}
+
+.hover-glow:hover {
+  box-shadow: var(--shadow-glow);
+}
+
+/* Bounce Effect */
+.bounce-in {
+  animation: bounceIn var(--animation-duration-slower) var(--animation-easing-bounce) both;
+}
+
+@keyframes bounceIn {
+  0% {
+      opacity: 0;
+      transform: scale(0.3);
+  }
+  50% {
+      opacity: 1;
+      transform: scale(1.05);
+  }
+  70% {
+      transform: scale(0.9);
+  }
+  100% {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
+/* Slide Animations */
+.slide-in-left {
+  animation: slideInLeft var(--animation-duration-normal) var(--animation-easing-smooth) both;
+}
+
+.slide-in-right {
+  animation: slideInRight var(--animation-duration-normal) var(--animation-easing-smooth) both;
+}
+
+.slide-in-up {
+  animation: slideInUp var(--animation-duration-normal) var(--animation-easing-smooth) both;
+}
+
+.slide-in-down {
+  animation: slideInDown var(--animation-duration-normal) var(--animation-easing-smooth) both;
+}
+
+@keyframes slideInLeft {
+  from {
+      opacity: 0;
+      transform: translateX(-30px);
+  }
+  to {
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+      opacity: 0;
+      transform: translateX(30px);
+  }
+  to {
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+      opacity: 0;
+      transform: translateY(30px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+      opacity: 0;
+      transform: translateY(-30px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Fade Animations */
+.fade-in {
+  animation: fadeIn var(--animation-duration-normal) var(--animation-easing-smooth) both;
+}
+
+.fade-in-up {
+  animation: fadeInUp var(--animation-duration-normal) var(--animation-easing-smooth) both;
+}
+
+.fade-in-down {
+  animation: fadeInDown var(--animation-duration-normal) var(--animation-easing-smooth) both;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+      opacity: 0;
+      transform: translateY(-20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Zoom Animations */
+.zoom-in {
+  animation: zoomIn var(--animation-duration-normal) var(--animation-easing-smooth) both;
+}
+
+.zoom-out {
+  animation: zoomOut var(--animation-duration-normal) var(--animation-easing-smooth) both;
+}
+
+@keyframes zoomIn {
+  from {
+      opacity: 0;
+      transform: scale(0.8);
+  }
+  to {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
+@keyframes zoomOut {
+  from {
+      opacity: 1;
+      transform: scale(1);
+  }
+  to {
+      opacity: 0;
+      transform: scale(0.8);
+  }
+}
+
+/* Rotation Animations */
+.rotate-in {
+  animation: rotateIn var(--animation-duration-slow) var(--animation-easing-smooth) both;
+}
+
+@keyframes rotateIn {
+  from {
+      opacity: 0;
+      transform: rotate(-200deg);
+  }
+  to {
+      opacity: 1;
+      transform: rotate(0);
+  }
+}
+
+/* Flip Animations */
+.flip-in-x {
+  animation: flipInX var(--animation-duration-slow) var(--animation-easing-smooth) both;
+}
+
+.flip-in-y {
+  animation: flipInY var(--animation-duration-slow) var(--animation-easing-smooth) both;
+}
+
+@keyframes flipInX {
+  from {
+      opacity: 0;
+      transform: perspective(400px) rotateX(90deg);
+  }
+  40% {
+      transform: perspective(400px) rotateX(-20deg);
+  }
+  60% {
+      opacity: 1;
+      transform: perspective(400px) rotateX(10deg);
+  }
+  80% {
+      transform: perspective(400px) rotateX(-5deg);
+  }
+  to {
+      opacity: 1;
+      transform: perspective(400px) rotateX(0deg);
+  }
+}
+
+@keyframes flipInY {
+  from {
+      opacity: 0;
+      transform: perspective(400px) rotateY(90deg);
+  }
+  40% {
+      transform: perspective(400px) rotateY(-20deg);
+  }
+  60% {
+      opacity: 1;
+      transform: perspective(400px) rotateY(10deg);
+  }
+  80% {
+      transform: perspective(400px) rotateY(-5deg);
+  }
+  to {
+      opacity: 1;
+      transform: perspective(400px) rotateY(0deg);
+  }
+}
+
+/* Pulse Animations */
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+.pulse-slow {
+  animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+  0% {
+      transform: scale(1);
+  }
+  50% {
+      transform: scale(1.05);
+  }
+  100% {
+      transform: scale(1);
+  }
+}
+
+/* Shake Animation */
+.shake {
+  animation: shake var(--animation-duration-slow) var(--animation-easing-smooth);
+}
+
+@keyframes shake {
+  0%, 100% {
+      transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+      transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+      transform: translateX(5px);
+  }
+}
+
+/* Attention Seekers */
+.attention-blink {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+      opacity: 1;
+  }
+  51%, 100% {
+      opacity: 0;
+  }
+}
+
+.attention-bounce {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+      transform: translateY(0);
+  }
+  40%, 43% {
+      transform: translateY(-30px);
+  }
+  70% {
+      transform: translateY(-15px);
+  }
+  90% {
+      transform: translateY(-4px);
+  }
+}
+
+/* Loading Animations */
+.loading-dots {
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 10px;
+}
+
+.loading-dots div {
+  position: absolute;
+  top: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  animation: loadingDots 1.2s linear infinite;
+}
+
+.loading-dots div:nth-child(1) {
+  left: 0;
+  animation-delay: -0.24s;
+}
+
+.loading-dots div:nth-child(2) {
+  left: 12px;
+  animation-delay: -0.12s;
+}
+
+.loading-dots div:nth-child(3) {
+  left: 24px;
+  animation-delay: 0;
+}
+
+@keyframes loadingDots {
+  0% {
+      transform: scale(0);
+  }
+  50% {
+      transform: scale(1);
+  }
+  100% {
+      transform: scale(0);
+  }
+}
+
+/* Animations CSS - Advanced Animations & Effects */
+
+

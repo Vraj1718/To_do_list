@@ -1,0 +1,93 @@
+
+{% extends 'todo/base.html' %}
+{% load static %}
+{% block content %}
+<div class="page-header">
+    <h2>Hello, {{ user.username|capfirst }}</h2>
+    <h2>Your Tasks...</h2>
+    <div class="task-stats">
+        <div class="stat-card">
+            <span class="stat-number">{{ tasks|length }}</span>
+            <span class="stat-label">Total Tasks</span>
+        </div>
+    </div>
+</div>
+
+<div class="filter-section">
+    <form method="get" class="filter-form">
+        <div class="filter-group">
+            {% if messages %}
+            <div class="message-container">
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+            <label for="priority">Filter by Priority:</label>
+            <select name="priority" id="priority">
+                <option value="">All Priorities</option>
+                <option value="Low" {% if request.GET.priority == 'Low' %}selected{% endif %}>🟢 Low</option>
+                <option value="Medium" {% if request.GET.priority == 'Medium' %}selected{% endif %}>🟡 Medium</option>
+                <option value="High" {% if request.GET.priority == 'High' %}selected{% endif %}>🔴 High</option>
+            </select>
+        </div>
+        <button type="submit" class="filter-btn">
+            <span>🔍 Filter</span>
+        </button>
+    </form>
+</div>
+
+<div class="tasks-container">
+    {% if tasks %}
+        <ul class="tasks-grid">
+            {% for task in tasks %}
+            <li class="task-card {% if task.completed %}completed{% elif task.is_expired %}expired{% endif %}"
+                data-priority="{{ task.priority }}">
+                <div class="task-header">
+                    <h3 class="task-title">{{ task.title }}</h3>
+                    <span class="priority-badge priority-{{ task.priority|lower }}">
+                        {% if task.priority == 'High' %}🔴{% elif task.priority == 'Medium' %}🟡{% else %}🟢{% endif %}
+                        {{ task.priority }}
+                    </span>
+                </div>
+
+                {% if task.description %}
+                <p class="task-description">{{ task.description|truncatewords:20 }}</p>
+                {% endif %}
+
+                <div class="task-meta">
+                    <span class="due-date">
+                        📅 Due: {{ task.due_date|date:"M d, Y" }}
+                    </span>
+                    {% if task.is_expired %}
+                        <span class="expired-tag">⚠️ Expired</span>
+                    {% endif %}
+                </div>
+
+                <div class="task-actions">
+                    {% if not task.completed %}
+                        <a href="{% url 'complete' task.id %}" class="action-btn complete-btn"> ✅Complete</a>
+                        <a href="{% url 'edit' task.id %}" class="action-btn edit-btn">
+                            ✏️  Edit
+                        </a>
+                    {% endif %}
+                    <a href="{% url 'delete' task.id %}" class="action-btn delete-btn"
+                        onclick="return confirm('Are you sure you want to delete this task?')">
+                        🗑️ Delete
+                    </a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="empty-state">
+            <div class="empty-icon">📝</div>
+            <h3>No tasks yet!</h3>
+            <p>Start by creating your first task to get organized.</p>
+            <a href="{% url 'add' %}" class="add-task-btn">
+                ➕ Create Your First Task
+            </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock content %}

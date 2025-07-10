@@ -1,0 +1,64 @@
+{% extends 'todo/base.html' %}
+{% load static %}
+{% block content %}
+<div class="form-container">
+    <div class="form-header">
+        <h2>✨ Add New Task</h2>
+        <p>Create a new task to keep yourself organized and productive.</p>
+    </div>
+
+    <form method="post" class="task-form">
+        {% csrf_token %}
+        {% if messages %}
+            <div class="message-container">
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="form-group">
+            <label for="title">Task Title *</label>
+            <input type="text" id="title" name="title" placeholder="Enter your task title..." required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" placeholder="Add more details about your task..." rows="4"></textarea>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="due_date">Due Date *</label>
+                <input type="date" id="due_date" name="due_date" required>
+
+            </div>
+
+            <div class="form-group">
+                <label for="priority">Priority *</label>
+                <select id="priority" name="priority" required>
+                    <option value="">Select Priority</option>
+                    <option value="Low">🟢 Low Priority</option>
+                    <option value="Medium">🟡 Medium Priority</option>
+                    <option value="High">🔴 High Priority</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="submit-btn">
+                <span>➕ Add Task</span>
+            </button>
+            <a href="{% url 'home' %}" class="cancel-btn">
+                <span>❌ Cancel</span>
+            </a>
+        </div>
+    </form>
+</div>
+<script>
+    const dateInput = document.getElementById("due_date");
+    const today = new Date().toISOString().split("T")[0];
+    dateInput.setAttribute("min", today);
+</script>
+
+
+{% endblock content %}
