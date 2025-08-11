@@ -17,6 +17,13 @@
 </head>
 <body>
     <div class="navbar">
+        {% if messages %}
+        <div class="message-container">
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
         <div class="container">
             <h2>✨ Modern Task Manager</h2>
             {% if user.is_authenticated %}

@@ -7,15 +7,6 @@
             <h2>🔐 Welcome Back</h2>
             <p>Sign in to access your tasks and stay organized.</p>
         </div>
-
-        {% if messages %}
-            <div class="message-container">
-                {% for message in messages %}
-                    <div class="alert {{ message.tags }}">{{ message }}</div>
-                {% endfor %}
-            </div>
-        {% endif %}
-
         <form method="post" class="auth-form">
             {% csrf_token %}
             <div class="form-group">

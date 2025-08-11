@@ -8,14 +8,6 @@
             <p>Create your account to start managing tasks efficiently.</p>
         </div>
 
-        {% if messages %}
-            <div class="message-container">
-                {% for message in messages %}
-                    <div class="alert {{ message.tags }}">{{ message }}</div>
-                {% endfor %}
-            </div>
-        {% endif %}
-
         <form method="post" class="auth-form">
             {% csrf_token %}
             <div class="form-group">
